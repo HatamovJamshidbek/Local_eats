@@ -1,0 +1,1395 @@
+basePath: /
+definitions:
+  genproto.BusiestHour:
+    properties:
+      hour:
+        type: integer
+      orders_count:
+        type: integer
+    type: object
+  genproto.CreateKitchenRequest:
+    properties:
+      address:
+        type: string
+      cuisine_type:
+        type: string
+      description:
+        type: string
+      name:
+        type: string
+      phone_number:
+        type: string
+    type: object
+  genproto.CreateKitchenResponse:
+    properties:
+      address:
+        type: string
+      created_at:
+        type: string
+      cuisine_type:
+        type: string
+      description:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      owner_id:
+        type: string
+      phone_number:
+        type: string
+      rating:
+        type: number
+    type: object
+  genproto.CreateMealRequest:
+    properties:
+      available:
+        type: boolean
+      category:
+        type: string
+      description:
+        type: string
+      id:
+        type: string
+      kitchen_id:
+        type: string
+      name:
+        type: string
+      price:
+        type: number
+    type: object
+  genproto.CreateOrderRequest:
+    properties:
+      delivery_address:
+        type: string
+      delivery_time:
+        type: string
+      id:
+        type: string
+      items:
+        items:
+          $ref: '#/definitions/genproto.OrderItem'
+        type: array
+      kitchen_id:
+        type: string
+      status:
+        type: string
+      total_amount:
+        type: number
+      user_id:
+        type: string
+    type: object
+  genproto.CreatePaymentRequest:
+    properties:
+      card_number:
+        type: string
+      cvv:
+        type: string
+      expiry_date:
+        type: string
+      order_id:
+        type: string
+      payment_method:
+        type: string
+    type: object
+  genproto.CreatePaymentResponse:
+    properties:
+      amount:
+        type: number
+      created_at:
+        type: string
+      id:
+        type: string
+      order_id:
+        type: string
+      status:
+        type: string
+      transaction_id:
+        type: string
+    type: object
+  genproto.CreateReviewRequest:
+    properties:
+      comment:
+        type: string
+      kitchen_id:
+        type: string
+      order_id:
+        type: string
+      rating:
+        type: number
+      user_id:
+        type: string
+    type: object
+  genproto.CuisineActivity:
+    properties:
+      cuisine_type:
+        type: string
+      orders_count:
+        type: integer
+    type: object
+  genproto.Dish:
+    properties:
+      allergens:
+        items:
+          type: string
+        type: array
+      dietary_info:
+        items:
+          type: string
+        type: array
+      id:
+        type: string
+      name:
+        type: string
+      nutrition_info:
+        $ref: '#/definitions/genproto.NutritionInfo'
+      updated_at:
+        type: string
+    type: object
+  genproto.GetOrdersResponse:
+    properties:
+      limit:
+        type: integer
+      orders:
+        items:
+          $ref: '#/definitions/genproto.OrderResponse'
+        type: array
+      page:
+        type: integer
+      total:
+        type: integer
+    type: object
+  genproto.GetReviewsResponse:
+    properties:
+      average_rating:
+        type: number
+      limit_offset:
+        $ref: '#/definitions/genproto.LimitOffset'
+      reviews:
+        items:
+          $ref: '#/definitions/genproto.ReviewResponse'
+        type: array
+      total:
+        type: integer
+    type: object
+  genproto.GetUserActivityResponse:
+    properties:
+      favorite_cuisines:
+        items:
+          $ref: '#/definitions/genproto.CuisineActivity'
+        type: array
+      favorite_kitchens:
+        items:
+          $ref: '#/definitions/genproto.KitchenActivity'
+        type: array
+      total_orders:
+        type: integer
+      total_spent:
+        type: number
+    type: object
+  genproto.KitchenActivity:
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      orders_count:
+        type: integer
+    type: object
+  genproto.KitchenResponse:
+    properties:
+      address:
+        type: string
+      created_at:
+        type: string
+      cuisine_type:
+        type: string
+      description:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      owner_id:
+        type: string
+      phone_number:
+        type: string
+      rating:
+        type: number
+      total_order:
+        type: integer
+      updated_at:
+        type: string
+    type: object
+  genproto.KitchenStatisticsResponse:
+    properties:
+      average_rating:
+        type: number
+      busiest_hours:
+        items:
+          $ref: '#/definitions/genproto.BusiestHour'
+        type: array
+      top_dishes:
+        items:
+          $ref: '#/definitions/genproto.TopDish'
+        type: array
+      total_orders:
+        type: integer
+      total_revenue:
+        type: number
+    type: object
+  genproto.KitchensResponse:
+    properties:
+      kitchens:
+        items:
+          $ref: '#/definitions/genproto.KitchenResponse'
+        type: array
+      total:
+        type: number
+    type: object
+  genproto.LimitOffset:
+    properties:
+      limit:
+        type: integer
+      offset:
+        type: integer
+    type: object
+  genproto.LoginResponse:
+    properties:
+      accessToken:
+        type: string
+      expires_in:
+        type: string
+      refreshToken:
+        type: string
+    type: object
+  genproto.MealResponse:
+    properties:
+      allergens:
+        items:
+          type: string
+        type: array
+      available:
+        type: boolean
+      category:
+        type: string
+      created_at:
+        type: string
+      description:
+        type: string
+      dietary_info:
+        items:
+          type: string
+        type: array
+      id:
+        type: string
+      ingredients:
+        items:
+          type: string
+        type: array
+      kitchen_id:
+        type: string
+      name:
+        type: string
+      price:
+        type: number
+      updated_at:
+        type: string
+    type: object
+  genproto.MealsResponse:
+    properties:
+      meals:
+        items:
+          $ref: '#/definitions/genproto.MealResponse'
+        type: array
+    type: object
+  genproto.NutritionInfo:
+    properties:
+      calories:
+        type: number
+      carbohydrates:
+        type: number
+      fat:
+        type: number
+      protein:
+        type: number
+    type: object
+  genproto.OrderItem:
+    properties:
+      dish_id:
+        type: string
+      name:
+        type: string
+      price:
+        type: number
+      quantity:
+        type: integer
+    type: object
+  genproto.OrderResponse:
+    properties:
+      Id:
+        type: string
+      created_at:
+        type: string
+      delivery_address:
+        type: string
+      delivery_time:
+        type: string
+      items:
+        items:
+          $ref: '#/definitions/genproto.OrderItem'
+        type: array
+      kitchen_id:
+        type: string
+      status:
+        type: string
+      total_amount:
+        type: number
+      updated_at:
+        type: string
+      user_id:
+        type: string
+    type: object
+  genproto.OrderStatusResponse:
+    properties:
+      id:
+        type: string
+      status:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  genproto.ReviewResponse:
+    properties:
+      comment:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: string
+      kitchen_id:
+        type: string
+      order_id:
+        type: string
+      rating:
+        type: number
+      user_id:
+        type: string
+    type: object
+  genproto.TimeRange:
+    properties:
+      close:
+        type: string
+      open:
+        type: string
+    type: object
+  genproto.TopDish:
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      orders_count:
+        type: integer
+      revenue:
+        type: number
+    type: object
+  genproto.UpdateKitchenRequest:
+    properties:
+      description:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+    type: object
+  genproto.UpdateKitchenResponse:
+    properties:
+      address:
+        type: string
+      cuisine_type:
+        type: string
+      description:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      owner_id:
+        type: string
+      phone_number:
+        type: string
+      rating:
+        type: number
+      updated_at:
+        type: string
+    type: object
+  genproto.UpdateMealRequest:
+    properties:
+      available:
+        type: boolean
+      id:
+        type: string
+      name:
+        type: string
+      price:
+        type: number
+    type: object
+  genproto.UpdateNutritionInfoRequest:
+    properties:
+      allergens:
+        items:
+          type: string
+        type: array
+      dietary_info:
+        items:
+          type: string
+        type: array
+      dish_id:
+        type: string
+      nutrition_info:
+        $ref: '#/definitions/genproto.NutritionInfo'
+    type: object
+  genproto.UpdateOrderStatusRequest:
+    properties:
+      id:
+        type: string
+      status:
+        type: string
+    type: object
+  genproto.UpdatePasswordRequest:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    type: object
+  genproto.UpdateUserProfileRequest:
+    properties:
+      address:
+        type: string
+      full_name:
+        type: string
+      id:
+        type: string
+      phone_number:
+        type: string
+    type: object
+  genproto.UpdateWorkingHoursRequest:
+    properties:
+      kitchen_id:
+        type: string
+      working_hours:
+        $ref: '#/definitions/genproto.WorkingHours'
+    type: object
+  genproto.UpdateWorkingHoursResponse:
+    properties:
+      kitchen_id:
+        type: string
+      updated_at:
+        type: string
+      working_hours:
+        $ref: '#/definitions/genproto.WorkingHours'
+    type: object
+  genproto.UserResponse:
+    properties:
+      address:
+        type: string
+      created_at:
+        type: string
+      email:
+        type: string
+      full_name:
+        type: string
+      id:
+        type: string
+      phone_number:
+        type: string
+      updated_at:
+        type: string
+      user_name:
+        type: string
+      user_type:
+        type: string
+    type: object
+  genproto.Void:
+    type: object
+  genproto.WorkingHours:
+    properties:
+      friday:
+        $ref: '#/definitions/genproto.TimeRange'
+      monday:
+        $ref: '#/definitions/genproto.TimeRange'
+      saturday:
+        $ref: '#/definitions/genproto.TimeRange'
+      sunday:
+        $ref: '#/definitions/genproto.TimeRange'
+      thursday:
+        $ref: '#/definitions/genproto.TimeRange'
+      tuesday:
+        $ref: '#/definitions/genproto.TimeRange'
+      wednesday:
+        $ref: '#/definitions/genproto.TimeRange'
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: API service
+  version: "1.0"
+paths:
+  /api/order_service/comment/{kitchen_id}:
+    get:
+      description: Get reviews for a kitchen based on query parameters
+      parameters:
+      - description: Kitchen ID
+        in: path
+        name: kitchen_id
+        required: true
+        type: string
+      - description: Limit
+        in: query
+        name: limit
+        type: integer
+      - description: Offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.GetReviewsResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Get Reviews for Kitchen
+      tags:
+      - Comment
+  /api/order_service/comment/create:
+    post:
+      consumes:
+      - application/json
+      description: Create a new comment
+      parameters:
+      - description: Create Comment
+        in: body
+        name: Create
+        required: true
+        schema:
+          $ref: '#/definitions/genproto.CreateReviewRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.ReviewResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Create Comment
+      tags:
+      - Comment
+  /api/order_service/meal/{kitchen_id}/meals:
+    get:
+      description: Get meals based on query parameters
+      parameters:
+      - description: Name
+        in: query
+        name: name
+        type: string
+      - description: Category
+        in: query
+        name: category
+        type: string
+      - description: Available
+        in: query
+        name: available
+        type: string
+      - description: Price
+        in: query
+        name: price
+        type: string
+      - description: Limit
+        in: query
+        name: limit
+        type: integer
+      - description: Offset
+        in: query
+        name: offset
+        type: integer
+      - description: Kitchen ID
+        in: path
+        name: kitchen_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.MealsResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Get Meals
+      tags:
+      - Meal
+  /api/order_service/meal/{meal_id}:
+    delete:
+      description: Delete a meal
+      parameters:
+      - description: Meal ID
+        in: path
+        name: meal_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Delete Meal
+      tags:
+      - Meal
+    put:
+      consumes:
+      - application/json
+      description: Update an existing meal
+      parameters:
+      - description: Meal ID
+        in: path
+        name: meal_id
+        required: true
+        type: string
+      - description: Update Menu
+        in: body
+        name: Update
+        required: true
+        schema:
+          $ref: '#/definitions/genproto.UpdateMealRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.MealResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Update Meal
+      tags:
+      - Meal
+  /api/order_service/meal/{meal_id}/update-nutrition-info:
+    put:
+      consumes:
+      - application/json
+      description: Updates the nutrition information of a dish based on the provided
+        request payload.
+      operationId: updateNutritionInfo
+      parameters:
+      - description: Meal ID
+        in: path
+        name: meal_id
+        required: true
+        type: string
+      - description: Request payload
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/genproto.UpdateNutritionInfoRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Updated dish information
+          schema:
+            $ref: '#/definitions/genproto.Dish'
+      summary: Update nutrition information of a dish
+      tags:
+      - qo'shimcha Api
+  /api/order_service/meal/create:
+    post:
+      consumes:
+      - application/json
+      description: Create a new meal
+      parameters:
+      - description: Create Menu
+        in: body
+        name: Create
+        required: true
+        schema:
+          $ref: '#/definitions/genproto.CreateMealRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.MealResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Create Meal
+      tags:
+      - Meal
+  /api/order_service/order/{id}:
+    get:
+      description: Get an order by its ID
+      parameters:
+      - description: Order ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.OrderResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Get Order by ID
+      tags:
+      - Order
+  /api/order_service/order/{order_id}/status:
+    put:
+      consumes:
+      - application/json
+      description: Update an order's status
+      parameters:
+      - description: Order ID
+        in: path
+        name: order_id
+        required: true
+        type: string
+      - description: Update Order Status
+        in: body
+        name: Update
+        required: true
+        schema:
+          $ref: '#/definitions/genproto.UpdateOrderStatusRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.OrderStatusResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Update Order Status
+      tags:
+      - Order
+  /api/order_service/order/chef/{kitchen_id}:
+    get:
+      description: Get orders for a chef based on query parameters
+      parameters:
+      - description: Kitchen ID
+        in: path
+        name: kitchen_id
+        required: true
+        type: string
+      - description: Status
+        in: query
+        name: status
+        type: string
+      - description: Limit
+        in: query
+        name: limit
+        type: integer
+      - description: Offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.GetOrdersResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Get Orders for Chef
+      tags:
+      - Order
+  /api/order_service/order/create:
+    post:
+      consumes:
+      - application/json
+      description: Create a new order
+      parameters:
+      - description: Create Order
+        in: body
+        name: Create
+        required: true
+        schema:
+          $ref: '#/definitions/genproto.CreateOrderRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.OrderResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Create Order
+      tags:
+      - Order
+  /api/order_service/order/customer/{user_id}:
+    get:
+      description: Get orders for a customer based on query parameters
+      parameters:
+      - description: User ID
+        in: path
+        name: user_id
+        required: true
+        type: string
+      - description: Status
+        in: query
+        name: status
+        type: string
+      - description: Limit
+        in: query
+        name: limit
+        type: integer
+      - description: Offset
+        in: query
+        name: offset
+        type: integer
+      - description: Kitchen ID
+        in: query
+        name: kitchen_id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully retrieved orders
+          schema:
+            $ref: '#/definitions/genproto.GetOrdersResponse'
+        "400":
+          description: Bad request
+          schema:
+            type: string
+        "404":
+          description: User not found
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: Get Orders for Customer
+      tags:
+      - Order
+  /api/order_service/payments:
+    post:
+      consumes:
+      - application/json
+      description: Create a new payment
+      parameters:
+      - description: Payment Request
+        in: body
+        name: payment
+        required: true
+        schema:
+          $ref: '#/definitions/genproto.CreatePaymentRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.CreatePaymentResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Create Payment
+      tags:
+      - Payment
+  /api/user_service/kitchen/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve a kitchen by its ID
+      parameters:
+      - description: Kitchen ID to fetch
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.KitchenResponse'
+        "404":
+          description: Not Found
+          schema:
+            type: string
+      summary: Get a kitchen by ID
+      tags:
+      - Kitchen
+  /api/user_service/kitchen/{kitchen_id}:
+    put:
+      consumes:
+      - application/json
+      description: Update an existing kitchen based on the provided request
+      parameters:
+      - description: Kitchen ID to update
+        in: path
+        name: kitchen_id
+        required: true
+        type: string
+      - description: Updated kitchen details
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/genproto.UpdateKitchenRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.UpdateKitchenResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Update an existing kitchen
+      tags:
+      - Kitchen
+  /api/user_service/kitchen/create:
+    post:
+      consumes:
+      - application/json
+      description: Create a new kitchen based on the provided request
+      parameters:
+      - description: Kitchen details to create
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/genproto.CreateKitchenRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.CreateKitchenResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Create a new kitchen
+      tags:
+      - Kitchen
+  /api/user_service/kitchen/search:
+    get:
+      consumes:
+      - application/json
+      description: Search for kitchens based on various criteria
+      parameters:
+      - description: Name of the kitchen to search for
+        in: query
+        name: name
+        type: string
+      - description: Rating of the kitchen
+        in: query
+        name: rating
+        type: number
+      - description: Address of the kitchen
+        in: query
+        name: address
+        type: string
+      - description: Total orders for the kitchen
+        in: query
+        name: total_orders
+        type: integer
+      - description: Phone number of the kitchen
+        in: query
+        name: phone_number
+        type: string
+      - description: Cuisine type of the kitchen
+        in: query
+        name: cuisine_type
+        type: string
+      - description: Description of the kitchen
+        in: query
+        name: description
+        type: string
+      - description: Owner ID of the kitchen
+        in: query
+        name: owner_id
+        type: string
+      - description: Limit the number of results
+        in: query
+        name: limit
+        type: integer
+      - description: Offset for pagination
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.KitchensResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Search kitchens
+      tags:
+      - Kitchen
+  /api/user_service/kitchen/statistics/{kitchen_id}:
+    get:
+      description: Retrieves statistics for a kitchen based on the provided kitchen_id,
+        start_date, and end_date.
+      operationId: getKitchenStatistics
+      parameters:
+      - description: Kitchen ID
+        in: path
+        name: kitchen_id
+        required: true
+        type: string
+      - description: Start date (YYYY-MM-DD)
+        in: query
+        name: start_date
+        required: true
+        type: string
+      - description: End date (YYYY-MM-DD)
+        in: query
+        name: end_date
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Statistics for the kitchen
+          schema:
+            $ref: '#/definitions/genproto.KitchenStatisticsResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Retrieve kitchen statistics
+      tags:
+      - qo'shimcha Api
+  /api/user_service/kitchen/update-working-hours:
+    put:
+      consumes:
+      - application/json
+      description: Updates the working hours of a kitchen based on the provided request
+        payload.
+      operationId: updateWorkingHours
+      parameters:
+      - description: Request payload
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/genproto.UpdateWorkingHoursRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Updated working hours information
+          schema:
+            $ref: '#/definitions/genproto.UpdateWorkingHoursResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Update kitchen working hours
+      tags:
+      - qo'shimcha Api
+  /api/user_service/users/{id}/profile:
+    get:
+      description: Retrieves a user's profile information based on the provided ID
+      operationId: get-user-profile
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.UserResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Get user profile by ID
+      tags:
+      - UserProfile
+    put:
+      consumes:
+      - application/json
+      description: Updates a user's profile information based on the provided data
+      operationId: update-user-profile
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Update User Profile Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/genproto.UpdateUserProfileRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.UserResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Update user profile
+      tags:
+      - UserProfile
+  /api/user_service/users/activity/{user_id}:
+    get:
+      description: Retrieves activity statistics for a user based on the provided
+        start_date and end_date query parameters.
+      operationId: getUserActivity
+      parameters:
+      - description: User ID
+        in: path
+        name: user_id
+        required: true
+        type: string
+      - description: Start date (YYYY-MM-DD)
+        in: query
+        name: start_date
+        required: true
+        type: string
+      - description: End date (YYYY-MM-DD)
+        in: query
+        name: end_date
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Activity statistics for the user
+          schema:
+            $ref: '#/definitions/genproto.GetUserActivityResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Retrieve user activity
+      tags:
+      - qo'shimcha Api
+  /api/user_service/users/logout:
+    put:
+      consumes:
+      - application/json
+      description: Logout user based on the provided email and new password
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Logout
+      tags:
+      - Auth
+  /api/user_service/users/update_password:
+    put:
+      consumes:
+      - application/json
+      description: Updates the password for a user based on the provided email and
+        new password
+      parameters:
+      - description: Update Password Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/genproto.UpdatePasswordRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.Void'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Update user password
+      tags:
+      - Auth
+  /api/user_service/users/update_token:
+    put:
+      consumes:
+      - application/json
+      description: Refreshes the access token using a refresh token
+      parameters:
+      - description: Refresh token
+        in: query
+        name: refresh_token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.LoginResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Refresh access token
+      tags:
+      - Auth
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

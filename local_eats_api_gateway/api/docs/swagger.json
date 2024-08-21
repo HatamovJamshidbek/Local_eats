@@ -1,0 +1,2115 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "API service",
+        "contact": {},
+        "version": "1.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "paths": {
+        "/api/order_service/comment/create": {
+            "post": {
+                "description": "Create a new comment",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Comment"
+                ],
+                "summary": "Create Comment",
+                "parameters": [
+                    {
+                        "description": "Create Comment",
+                        "name": "Create",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/genproto.CreateReviewRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/genproto.ReviewResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/order_service/comment/{kitchen_id}": {
+            "get": {
+                "description": "Get reviews for a kitchen based on query parameters",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Comment"
+                ],
+                "summary": "Get Reviews for Kitchen",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Kitchen ID",
+                        "name": "kitchen_id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Limit",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Offset",
+                        "name": "offset",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/genproto.GetReviewsResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/order_service/meal/create": {
+            "post": {
+                "description": "Create a new meal",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Meal"
+                ],
+                "summary": "Create Meal",
+                "parameters": [
+                    {
+                        "description": "Create Menu",
+                        "name": "Create",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/genproto.CreateMealRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/genproto.MealResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/order_service/meal/{kitchen_id}/meals": {
+            "get": {
+                "description": "Get meals based on query parameters",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Meal"
+                ],
+                "summary": "Get Meals",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Name",
+                        "name": "name",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Category",
+                        "name": "category",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Available",
+                        "name": "available",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Price",
+                        "name": "price",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Limit",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Offset",
+                        "name": "offset",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Kitchen ID",
+                        "name": "kitchen_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/genproto.MealsResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/order_service/meal/{meal_id}": {
+            "put": {
+                "description": "Update an existing meal",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Meal"
+                ],
+                "summary": "Update Meal",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Meal ID",
+                        "name": "meal_id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Update Menu",
+                        "name": "Update",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/genproto.UpdateMealRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/genproto.MealResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete a meal",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Meal"
+                ],
+                "summary": "Delete Meal",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Meal ID",
+                        "name": "meal_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/order_service/meal/{meal_id}/update-nutrition-info": {
+            "put": {
+                "description": "Updates the nutrition information of a dish based on the provided request payload.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "qo'shimcha Api"
+                ],
+                "summary": "Update nutrition information of a dish",
+                "operationId": "updateNutritionInfo",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Meal ID",
+                        "name": "meal_id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Request payload",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/genproto.UpdateNutritionInfoRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated dish information",
+                        "schema": {
+                            "$ref": "#/definitions/genproto.Dish"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/order_service/order/chef/{kitchen_id}": {
+            "get": {
+                "description": "Get orders for a chef based on query parameters",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Get Orders for Chef",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Kitchen ID",
+                        "name": "kitchen_id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Status",
+                        "name": "status",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Limit",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Offset",
+                        "name": "offset",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/genproto.GetOrdersResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/order_service/order/create": {
+            "post": {
+                "description": "Create a new order",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Create Order",
+                "parameters": [
+                    {
+                        "description": "Create Order",
+                        "name": "Create",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/genproto.CreateOrderRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/genproto.OrderResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/order_service/order/customer/{user_id}": {
+            "get": {
+                "description": "Get orders for a customer based on query parameters",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Get Orders for Customer",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "user_id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Status",
+                        "name": "status",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Limit",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Offset",
+                        "name": "offset",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Kitchen ID",
+                        "name": "kitchen_id",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully retrieved orders",
+                        "schema": {
+                            "$ref": "#/definitions/genproto.GetOrdersResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "404": {
+                        "description": "User not found",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/order_service/order/{id}": {
+            "get": {
+                "description": "Get an order by its ID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Get Order by ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Order ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/genproto.OrderResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/order_service/order/{order_id}/status": {
+            "put": {
+                "description": "Update an order's status",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Update Order Status",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Order ID",
+                        "name": "order_id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Update Order Status",
+                        "name": "Update",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/genproto.UpdateOrderStatusRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/genproto.OrderStatusResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/order_service/payments": {
+            "post": {
+                "description": "Create a new payment",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Payment"
+                ],
+                "summary": "Create Payment",
+                "parameters": [
+                    {
+                        "description": "Payment Request",
+                        "name": "payment",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/genproto.CreatePaymentRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/genproto.CreatePaymentResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user_service/kitchen/create": {
+            "post": {
+                "description": "Create a new kitchen based on the provided request",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Kitchen"
+                ],
+                "summary": "Create a new kitchen",
+                "parameters": [
+                    {
+                        "description": "Kitchen details to create",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/genproto.CreateKitchenRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/genproto.CreateKitchenResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user_service/kitchen/search": {
+            "get": {
+                "description": "Search for kitchens based on various criteria",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Kitchen"
+                ],
+                "summary": "Search kitchens",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Name of the kitchen to search for",
+                        "name": "name",
+                        "in": "query"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Rating of the kitchen",
+                        "name": "rating",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Address of the kitchen",
+                        "name": "address",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Total orders for the kitchen",
+                        "name": "total_orders",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Phone number of the kitchen",
+                        "name": "phone_number",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Cuisine type of the kitchen",
+                        "name": "cuisine_type",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Description of the kitchen",
+                        "name": "description",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Owner ID of the kitchen",
+                        "name": "owner_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Limit the number of results",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Offset for pagination",
+                        "name": "offset",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/genproto.KitchensResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user_service/kitchen/statistics/{kitchen_id}": {
+            "get": {
+                "description": "Retrieves statistics for a kitchen based on the provided kitchen_id, start_date, and end_date.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "qo'shimcha Api"
+                ],
+                "summary": "Retrieve kitchen statistics",
+                "operationId": "getKitchenStatistics",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Kitchen ID",
+                        "name": "kitchen_id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Start date (YYYY-MM-DD)",
+                        "name": "start_date",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "End date (YYYY-MM-DD)",
+                        "name": "end_date",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Statistics for the kitchen",
+                        "schema": {
+                            "$ref": "#/definitions/genproto.KitchenStatisticsResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user_service/kitchen/update-working-hours": {
+            "put": {
+                "description": "Updates the working hours of a kitchen based on the provided request payload.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "qo'shimcha Api"
+                ],
+                "summary": "Update kitchen working hours",
+                "operationId": "updateWorkingHours",
+                "parameters": [
+                    {
+                        "description": "Request payload",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/genproto.UpdateWorkingHoursRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated working hours information",
+                        "schema": {
+                            "$ref": "#/definitions/genproto.UpdateWorkingHoursResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user_service/kitchen/{id}": {
+            "get": {
+                "description": "Retrieve a kitchen by its ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Kitchen"
+                ],
+                "summary": "Get a kitchen by ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Kitchen ID to fetch",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/genproto.KitchenResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user_service/kitchen/{kitchen_id}": {
+            "put": {
+                "description": "Update an existing kitchen based on the provided request",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Kitchen"
+                ],
+                "summary": "Update an existing kitchen",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Kitchen ID to update",
+                        "name": "kitchen_id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Updated kitchen details",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/genproto.UpdateKitchenRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/genproto.UpdateKitchenResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user_service/users/activity/{user_id}": {
+            "get": {
+                "description": "Retrieves activity statistics for a user based on the provided start_date and end_date query parameters.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "qo'shimcha Api"
+                ],
+                "summary": "Retrieve user activity",
+                "operationId": "getUserActivity",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "user_id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Start date (YYYY-MM-DD)",
+                        "name": "start_date",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "End date (YYYY-MM-DD)",
+                        "name": "end_date",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Activity statistics for the user",
+                        "schema": {
+                            "$ref": "#/definitions/genproto.GetUserActivityResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user_service/users/logout": {
+            "put": {
+                "description": "Logout user based on the provided email and new password",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Logout",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user_service/users/update_password": {
+            "put": {
+                "description": "Updates the password for a user based on the provided email and new password",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Update user password",
+                "parameters": [
+                    {
+                        "description": "Update Password Request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/genproto.UpdatePasswordRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/genproto.Void"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user_service/users/update_token": {
+            "put": {
+                "description": "Refreshes the access token using a refresh token",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Refresh access token",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Refresh token",
+                        "name": "refresh_token",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/genproto.LoginResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user_service/users/{id}/profile": {
+            "get": {
+                "description": "Retrieves a user's profile information based on the provided ID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "UserProfile"
+                ],
+                "summary": "Get user profile by ID",
+                "operationId": "get-user-profile",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/genproto.UserResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Updates a user's profile information based on the provided data",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "UserProfile"
+                ],
+                "summary": "Update user profile",
+                "operationId": "update-user-profile",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Update User Profile Request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/genproto.UpdateUserProfileRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/genproto.UserResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "genproto.BusiestHour": {
+            "type": "object",
+            "properties": {
+                "hour": {
+                    "type": "integer"
+                },
+                "orders_count": {
+                    "type": "integer"
+                }
+            }
+        },
+        "genproto.CreateKitchenRequest": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "cuisine_type": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "phone_number": {
+                    "type": "string"
+                }
+            }
+        },
+        "genproto.CreateKitchenResponse": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "cuisine_type": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "owner_id": {
+                    "type": "string"
+                },
+                "phone_number": {
+                    "type": "string"
+                },
+                "rating": {
+                    "type": "number"
+                }
+            }
+        },
+        "genproto.CreateMealRequest": {
+            "type": "object",
+            "properties": {
+                "available": {
+                    "type": "boolean"
+                },
+                "category": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "kitchen_id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "number"
+                }
+            }
+        },
+        "genproto.CreateOrderRequest": {
+            "type": "object",
+            "properties": {
+                "delivery_address": {
+                    "type": "string"
+                },
+                "delivery_time": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/genproto.OrderItem"
+                    }
+                },
+                "kitchen_id": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "total_amount": {
+                    "type": "number"
+                },
+                "user_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "genproto.CreatePaymentRequest": {
+            "type": "object",
+            "properties": {
+                "card_number": {
+                    "type": "string"
+                },
+                "cvv": {
+                    "type": "string"
+                },
+                "expiry_date": {
+                    "type": "string"
+                },
+                "order_id": {
+                    "type": "string"
+                },
+                "payment_method": {
+                    "type": "string"
+                }
+            }
+        },
+        "genproto.CreatePaymentResponse": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "number"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "order_id": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "transaction_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "genproto.CreateReviewRequest": {
+            "type": "object",
+            "properties": {
+                "comment": {
+                    "type": "string"
+                },
+                "kitchen_id": {
+                    "type": "string"
+                },
+                "order_id": {
+                    "type": "string"
+                },
+                "rating": {
+                    "type": "number"
+                },
+                "user_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "genproto.CuisineActivity": {
+            "type": "object",
+            "properties": {
+                "cuisine_type": {
+                    "type": "string"
+                },
+                "orders_count": {
+                    "type": "integer"
+                }
+            }
+        },
+        "genproto.Dish": {
+            "type": "object",
+            "properties": {
+                "allergens": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "dietary_info": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "nutrition_info": {
+                    "$ref": "#/definitions/genproto.NutritionInfo"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "genproto.GetOrdersResponse": {
+            "type": "object",
+            "properties": {
+                "limit": {
+                    "type": "integer"
+                },
+                "orders": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/genproto.OrderResponse"
+                    }
+                },
+                "page": {
+                    "type": "integer"
+                },
+                "total": {
+                    "type": "integer"
+                }
+            }
+        },
+        "genproto.GetReviewsResponse": {
+            "type": "object",
+            "properties": {
+                "average_rating": {
+                    "type": "number"
+                },
+                "limit_offset": {
+                    "$ref": "#/definitions/genproto.LimitOffset"
+                },
+                "reviews": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/genproto.ReviewResponse"
+                    }
+                },
+                "total": {
+                    "type": "integer"
+                }
+            }
+        },
+        "genproto.GetUserActivityResponse": {
+            "type": "object",
+            "properties": {
+                "favorite_cuisines": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/genproto.CuisineActivity"
+                    }
+                },
+                "favorite_kitchens": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/genproto.KitchenActivity"
+                    }
+                },
+                "total_orders": {
+                    "type": "integer"
+                },
+                "total_spent": {
+                    "type": "number"
+                }
+            }
+        },
+        "genproto.KitchenActivity": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "orders_count": {
+                    "type": "integer"
+                }
+            }
+        },
+        "genproto.KitchenResponse": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "cuisine_type": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "owner_id": {
+                    "type": "string"
+                },
+                "phone_number": {
+                    "type": "string"
+                },
+                "rating": {
+                    "type": "number"
+                },
+                "total_order": {
+                    "type": "integer"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "genproto.KitchenStatisticsResponse": {
+            "type": "object",
+            "properties": {
+                "average_rating": {
+                    "type": "number"
+                },
+                "busiest_hours": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/genproto.BusiestHour"
+                    }
+                },
+                "top_dishes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/genproto.TopDish"
+                    }
+                },
+                "total_orders": {
+                    "type": "integer"
+                },
+                "total_revenue": {
+                    "type": "number"
+                }
+            }
+        },
+        "genproto.KitchensResponse": {
+            "type": "object",
+            "properties": {
+                "kitchens": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/genproto.KitchenResponse"
+                    }
+                },
+                "total": {
+                    "type": "number"
+                }
+            }
+        },
+        "genproto.LimitOffset": {
+            "type": "object",
+            "properties": {
+                "limit": {
+                    "type": "integer"
+                },
+                "offset": {
+                    "type": "integer"
+                }
+            }
+        },
+        "genproto.LoginResponse": {
+            "type": "object",
+            "properties": {
+                "accessToken": {
+                    "type": "string"
+                },
+                "expires_in": {
+                    "type": "string"
+                },
+                "refreshToken": {
+                    "type": "string"
+                }
+            }
+        },
+        "genproto.MealResponse": {
+            "type": "object",
+            "properties": {
+                "allergens": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "available": {
+                    "type": "boolean"
+                },
+                "category": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "dietary_info": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "id": {
+                    "type": "string"
+                },
+                "ingredients": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "kitchen_id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "number"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "genproto.MealsResponse": {
+            "type": "object",
+            "properties": {
+                "meals": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/genproto.MealResponse"
+                    }
+                }
+            }
+        },
+        "genproto.NutritionInfo": {
+            "type": "object",
+            "properties": {
+                "calories": {
+                    "type": "number"
+                },
+                "carbohydrates": {
+                    "type": "number"
+                },
+                "fat": {
+                    "type": "number"
+                },
+                "protein": {
+                    "type": "number"
+                }
+            }
+        },
+        "genproto.OrderItem": {
+            "type": "object",
+            "properties": {
+                "dish_id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "number"
+                },
+                "quantity": {
+                    "type": "integer"
+                }
+            }
+        },
+        "genproto.OrderResponse": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "delivery_address": {
+                    "type": "string"
+                },
+                "delivery_time": {
+                    "type": "string"
+                },
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/genproto.OrderItem"
+                    }
+                },
+                "kitchen_id": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "total_amount": {
+                    "type": "number"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "genproto.OrderStatusResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "genproto.ReviewResponse": {
+            "type": "object",
+            "properties": {
+                "comment": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "kitchen_id": {
+                    "type": "string"
+                },
+                "order_id": {
+                    "type": "string"
+                },
+                "rating": {
+                    "type": "number"
+                },
+                "user_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "genproto.TimeRange": {
+            "type": "object",
+            "properties": {
+                "close": {
+                    "type": "string"
+                },
+                "open": {
+                    "type": "string"
+                }
+            }
+        },
+        "genproto.TopDish": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "orders_count": {
+                    "type": "integer"
+                },
+                "revenue": {
+                    "type": "number"
+                }
+            }
+        },
+        "genproto.UpdateKitchenRequest": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "genproto.UpdateKitchenResponse": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "cuisine_type": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "owner_id": {
+                    "type": "string"
+                },
+                "phone_number": {
+                    "type": "string"
+                },
+                "rating": {
+                    "type": "number"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "genproto.UpdateMealRequest": {
+            "type": "object",
+            "properties": {
+                "available": {
+                    "type": "boolean"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "number"
+                }
+            }
+        },
+        "genproto.UpdateNutritionInfoRequest": {
+            "type": "object",
+            "properties": {
+                "allergens": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "dietary_info": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "dish_id": {
+                    "type": "string"
+                },
+                "nutrition_info": {
+                    "$ref": "#/definitions/genproto.NutritionInfo"
+                }
+            }
+        },
+        "genproto.UpdateOrderStatusRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "genproto.UpdatePasswordRequest": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "genproto.UpdateUserProfileRequest": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "full_name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "phone_number": {
+                    "type": "string"
+                }
+            }
+        },
+        "genproto.UpdateWorkingHoursRequest": {
+            "type": "object",
+            "properties": {
+                "kitchen_id": {
+                    "type": "string"
+                },
+                "working_hours": {
+                    "$ref": "#/definitions/genproto.WorkingHours"
+                }
+            }
+        },
+        "genproto.UpdateWorkingHoursResponse": {
+            "type": "object",
+            "properties": {
+                "kitchen_id": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "working_hours": {
+                    "$ref": "#/definitions/genproto.WorkingHours"
+                }
+            }
+        },
+        "genproto.UserResponse": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "full_name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "phone_number": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "user_name": {
+                    "type": "string"
+                },
+                "user_type": {
+                    "type": "string"
+                }
+            }
+        },
+        "genproto.Void": {
+            "type": "object"
+        },
+        "genproto.WorkingHours": {
+            "type": "object",
+            "properties": {
+                "friday": {
+                    "$ref": "#/definitions/genproto.TimeRange"
+                },
+                "monday": {
+                    "$ref": "#/definitions/genproto.TimeRange"
+                },
+                "saturday": {
+                    "$ref": "#/definitions/genproto.TimeRange"
+                },
+                "sunday": {
+                    "$ref": "#/definitions/genproto.TimeRange"
+                },
+                "thursday": {
+                    "$ref": "#/definitions/genproto.TimeRange"
+                },
+                "tuesday": {
+                    "$ref": "#/definitions/genproto.TimeRange"
+                },
+                "wednesday": {
+                    "$ref": "#/definitions/genproto.TimeRange"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "BearerAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}

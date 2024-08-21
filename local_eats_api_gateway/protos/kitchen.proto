@@ -1,0 +1,136 @@
+
+
+syntax="proto3";
+
+
+option go_package="/genproto";
+import "common.proto";
+message  UpdatePasswordRequest{
+  string  email=1;
+  string  password=2;
+}
+
+
+message CreateKitchenRequest{
+  string  name=1;
+  string  description=2;
+  string cuisine_type=3;
+  string address=4;
+  string phone_number=5;
+}
+message  CreateKitchenResponse{
+  string  id=1;
+  string  owner_id=2;
+  string  name=3;
+  string description=4;
+  string cuisine_type=5;
+  string  address=6;
+  string phone_number=7;
+  float  rating=8;
+  string  created_at=9;
+}
+message  UpdateKitchenRequest{
+  string id=1;
+  string  name=2;
+  string description=3;
+}
+message  UpdateKitchenResponse{
+  string  id=1;
+  string  owner_id=2;
+  string  name=3;
+  string description=4;
+  string cuisine_type=5;
+  string  address=6;
+  string phone_number=7;
+  float  rating=8;
+  string  updated_at=9;
+}
+message  KitchenResponse{
+  string  id=1;
+  string  owner_id=2;
+  string  name=3;
+  string description=4;
+  string cuisine_type=5;
+  string  address=6;
+  string phone_number=7;
+  float  rating=8;
+  int64  total_order=9;
+  string  created_at=10;
+  string  updated_at=11;
+}
+message  KitchensResponse{
+  repeated  KitchenResponse kitchens=1;
+  float  total=2;
+}
+message  SearchKitchenRequest{
+  string  owner_id=2;
+  string  name=3;
+  string description=4;
+  string cuisine_type=5;
+  string  address=6;
+  string phone_number=7;
+  float  rating=8;
+  int64  total_order=9;
+  LimitOffset limit_offset=10;
+}
+
+service  KitchenService {
+  rpc CreateKitchen(CreateKitchenRequest)returns(CreateKitchenResponse);
+  rpc UpdateKitchen(UpdateKitchenRequest)returns(UpdateKitchenResponse);
+  rpc GetByIdKitchen(IdRequest)returns(KitchenResponse);
+  rpc GetAll(LimitOffset)returns(KitchensResponse);
+  rpc SearchKitchen(SearchKitchenRequest)returns(KitchensResponse);
+  rpc UpdateWorkingHours(UpdateWorkingHoursRequest)returns(UpdateWorkingHoursResponse);
+  rpc ActivityUser(GetUserActivityRequest)returns(GetUserActivityResponse);
+}
+message TimeRange {
+  string open = 1;
+  string close = 2;
+}
+
+message WorkingHours {
+  TimeRange monday = 1;
+  TimeRange tuesday = 2;
+  TimeRange wednesday = 3;
+  TimeRange thursday = 4;
+  TimeRange friday = 5;
+  TimeRange saturday = 6;
+  TimeRange sunday = 7;
+}
+
+message UpdateWorkingHoursRequest {
+  string kitchen_id = 1;
+  WorkingHours working_hours = 2;
+}
+
+message UpdateWorkingHoursResponse {
+  string kitchen_id = 1;
+  WorkingHours working_hours = 2;
+  string updated_at = 3;
+}
+
+
+message CuisineActivity {
+  string cuisine_type = 1;
+  int32 orders_count = 2;
+}
+
+message KitchenActivity {
+  string id = 1;
+  string name = 2;
+  int32 orders_count = 3;
+}
+
+message GetUserActivityRequest {
+  string user_id = 1;
+  string start_date = 2;
+  string end_date = 3;
+}
+
+message GetUserActivityResponse {
+  int32 total_orders = 1;
+  float total_spent = 2;
+  repeated CuisineActivity favorite_cuisines = 3;
+  repeated KitchenActivity favorite_kitchens = 4;
+}
+

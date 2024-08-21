@@ -1,0 +1,164 @@
+basePath: /
+definitions:
+  genproto.LoginRequest:
+    properties:
+      email:
+        type: string
+      password_hash:
+        type: string
+    type: object
+  genproto.LoginResponse:
+    properties:
+      accessToken:
+        type: string
+      expires_in:
+        type: string
+      refreshToken:
+        type: string
+    type: object
+  genproto.RegisterRequest:
+    properties:
+      email:
+        type: string
+      full_name:
+        type: string
+      password_hash:
+        type: string
+      user_name:
+        type: string
+      user_type:
+        type: string
+    type: object
+  genproto.RegisterResponse:
+    properties:
+      created_at:
+        type: string
+      email:
+        type: string
+      full_name:
+        type: string
+      id:
+        type: string
+      password_hash:
+        type: string
+      user_name:
+        type: string
+      user_type:
+        type: string
+    type: object
+  genproto.UpdatePasswordRequest:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    type: object
+  genproto.Void:
+    type: object
+host: localhost:8087
+info:
+  contact: {}
+  description: Auth service
+  version: "1.0"
+paths:
+  /api/auth_service/login:
+    post:
+      consumes:
+      - application/json
+      description: Logs in a user with the provided credentials
+      parameters:
+      - description: Login credentials
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/genproto.LoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.LoginResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: User login
+      tags:
+      - Auth
+  /api/auth_service/register:
+    post:
+      consumes:
+      - application/json
+      description: Register a new user with the provided details
+      parameters:
+      - description: Registration details
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/genproto.RegisterRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.RegisterResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Register a new user
+      tags:
+      - Auth
+  /api/auth_service/update_password:
+    put:
+      consumes:
+      - application/json
+      description: Logout user based on the provided email and new password
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Logout
+      tags:
+      - Auth
+  /api/auth_service/update_token:
+    get:
+      consumes:
+      - application/json
+      description: Refreshes the access token using a refresh token
+      parameters:
+      - description: Refresh token
+        in: query
+        name: refresh_token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.LoginResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Refresh access token
+      tags:
+      - Auth
+swagger: "2.0"
